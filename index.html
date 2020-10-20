@@ -9,7 +9,6 @@
 
 
 
-
 <Header>
   <H2 style="text-align: center;">
   The Game Of Life
@@ -20,11 +19,15 @@
 <section>
   <nav>
     <ul>
-      <li><input type="submit" value="Increment" class="menuButton" style="width:100%" onclick="Increment()"></li>
+      <li><input id="StartButton" type="submit" value="Start" class="menuButton" style="width:100%" onclick="ToggleStart()"></li>
       <li>Width  : <input type="range" value="10" min="10" max="50" oninput="WidthScale(this.value)" ><label id="WidthLabel">10/50</label></li>
       <li>Height : <input type="range" value="10" min="10" max="50" oninput="HeightScale(this.value)"><label id="HeightLabel">10/50</label></li>
+      <li>Delay : <input type="range" value="500" min="10" max="1000" oninput="SetSpeed(this.value)"></li>
+      <li><label id="IncrementationLabel">Incrementations : 0</label></li>
     </ul>
-    <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game Of Life WiKi</a>
+    <br>
+    <br>
+    <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game Of Life WiKi</a><br>
   </nav>
   
   <article>
@@ -37,7 +40,7 @@
 
 
 <footer>
-  <p>Version 1.0</p>
+  <p>Version 1.1</p>
   <p>By : Aaron</p>
 </footer>
 
@@ -85,7 +88,7 @@ class Grid {
     this.Width = Width;
     this.Height = Height;
     this.GridMap = {};
-    
+
     // Initilize all possible grid cells for simplicity later
     for (var y = 0; y < 50; y++) {
       for (var x = 0; x < 50; x++) {
@@ -97,17 +100,17 @@ class Grid {
   }
 
   Build() {
-	
-  // Clear visibility of all Cells
-  for (var y = 0; y < 50; y++) {
-  	for (var x = 0; x < 50; x++) {
-    	this.GridMap[x + "-" + y].Box.style.display = "none";
-    }
-  }
 
-  
-  // Set visibility of the correct range of cells
-		
+    // Clear visibility of all Cells
+    for (var y = 0; y < 50; y++) {
+      for (var x = 0; x < 50; x++) {
+        this.GridMap[x + "-" + y].Box.style.display = "none";
+      }
+    }
+
+
+    // Set visibility of the correct range of cells
+
     for (var y = 0; y < this.Height; y++) {
       for (var x = 0; x < this.Width; x++) {
         this.GridMap[x + "-" + y].Box.style.display = "inline";
@@ -116,73 +119,143 @@ class Grid {
 
   }
 
-	Increment(){
-  	var ChangedCells = [];
-    
-  	for (var y = 0; y < this.Height; y++) {
+  Increment() {
+    var ChangedCells = [];
+
+    for (var y = 0; y < this.Height; y++) {
       for (var x = 0; x < this.Width; x++) {
-      	if(this.GridMap[x + "-" + y].Alive == true){ // Alive
-        
-        	var AliveCount = 0;
-          var cell1 = this.GridMap[(x-1) + "-" + (y-1)]; 	// Top Left
-          var cell2 = this.GridMap[x + "-" + (y-1)]; 			// Top
-          var cell3 = this.GridMap[(x+1) + "-" + (y-1)]; 	// Top Right
-          var cell4 = this.GridMap[(x-1) + "-" + y];			// Left
-          var cell5 = this.GridMap[(x+1) + "-" + y];			// Right
-          var cell6 = this.GridMap[(x-1) + "-" + (y+1)];	// Bottom Left
-          var cell7 = this.GridMap[x + "-" + (y+1)];			// Bottom
-          var cell8 = this.GridMap[(x+1) + "-" + (y+1)];	// Bottom Right
-          
-          if(cell1 != null){if(cell1.Alive){AliveCount++;}}
-          if(cell2 != null){if(cell2.Alive){AliveCount++;}}
-          if(cell3 != null){if(cell3.Alive){AliveCount++;}}
-          if(cell4 != null){if(cell4.Alive){AliveCount++;}}
-          if(cell5 != null){if(cell5.Alive){AliveCount++;}}
-          if(cell6 != null){if(cell6.Alive){AliveCount++;}}
-          if(cell7 != null){if(cell7.Alive){AliveCount++;}}
-          if(cell8 != null){if(cell8.Alive){AliveCount++;}}
-          
-          // Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-          if(AliveCount < 2){ ChangedCells.push(x + "-" + y); }
-          
-          // Any live cell with more than three live neighbours dies, as if by overpopulation.
-          if(AliveCount > 3){ ChangedCells.push(x + "-" + y); }
-        	
-        }else{ // Dead
+        if (this.GridMap[x + "-" + y].Alive == true) { // Alive
 
           var AliveCount = 0;
-          var cell1 = this.GridMap[(x-1) + "-" + (y-1)]; 	// Top Left
-          var cell2 = this.GridMap[x + "-" + (y-1)]; 			// Top
-          var cell3 = this.GridMap[(x+1) + "-" + (y-1)]; 	// Top Right
-          var cell4 = this.GridMap[(x-1) + "-" + y];			// Left
-          var cell5 = this.GridMap[(x+1) + "-" + y];			// Right
-          var cell6 = this.GridMap[(x-1) + "-" + (y+1)];	// Bottom Left
-          var cell7 = this.GridMap[x + "-" + (y+1)];			// Bottom
-          var cell8 = this.GridMap[(x+1) + "-" + (y+1)];	// Bottom Right
-          
-          if(cell1 != null){if(cell1.Alive){AliveCount++;}}
-          if(cell2 != null){if(cell2.Alive){AliveCount++;}}
-          if(cell3 != null){if(cell3.Alive){AliveCount++;}}
-          if(cell4 != null){if(cell4.Alive){AliveCount++;}}
-          if(cell5 != null){if(cell5.Alive){AliveCount++;}}
-          if(cell6 != null){if(cell6.Alive){AliveCount++;}}
-          if(cell7 != null){if(cell7.Alive){AliveCount++;}}
-          if(cell8 != null){if(cell8.Alive){AliveCount++;}}
-          
+          var cell1 = this.GridMap[(x - 1) + "-" + (y - 1)]; // Top Left
+          var cell2 = this.GridMap[x + "-" + (y - 1)]; // Top
+          var cell3 = this.GridMap[(x + 1) + "-" + (y - 1)]; // Top Right
+          var cell4 = this.GridMap[(x - 1) + "-" + y]; // Left
+          var cell5 = this.GridMap[(x + 1) + "-" + y]; // Right
+          var cell6 = this.GridMap[(x - 1) + "-" + (y + 1)]; // Bottom Left
+          var cell7 = this.GridMap[x + "-" + (y + 1)]; // Bottom
+          var cell8 = this.GridMap[(x + 1) + "-" + (y + 1)]; // Bottom Right
 
-          
+          if (cell1 != null) {
+            if (cell1.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell2 != null) {
+            if (cell2.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell3 != null) {
+            if (cell3.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell4 != null) {
+            if (cell4.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell5 != null) {
+            if (cell5.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell6 != null) {
+            if (cell6.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell7 != null) {
+            if (cell7.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell8 != null) {
+            if (cell8.Alive) {
+              AliveCount++;
+            }
+          }
+
+          // Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+          if (AliveCount < 2) {
+            ChangedCells.push(x + "-" + y);
+          }
+
+          // Any live cell with more than three live neighbours dies, as if by overpopulation.
+          if (AliveCount > 3) {
+            ChangedCells.push(x + "-" + y);
+          }
+
+        } else { // Dead
+
+          var AliveCount = 0;
+          var cell1 = this.GridMap[(x - 1) + "-" + (y - 1)]; // Top Left
+          var cell2 = this.GridMap[x + "-" + (y - 1)]; // Top
+          var cell3 = this.GridMap[(x + 1) + "-" + (y - 1)]; // Top Right
+          var cell4 = this.GridMap[(x - 1) + "-" + y]; // Left
+          var cell5 = this.GridMap[(x + 1) + "-" + y]; // Right
+          var cell6 = this.GridMap[(x - 1) + "-" + (y + 1)]; // Bottom Left
+          var cell7 = this.GridMap[x + "-" + (y + 1)]; // Bottom
+          var cell8 = this.GridMap[(x + 1) + "-" + (y + 1)]; // Bottom Right
+
+          if (cell1 != null) {
+            if (cell1.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell2 != null) {
+            if (cell2.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell3 != null) {
+            if (cell3.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell4 != null) {
+            if (cell4.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell5 != null) {
+            if (cell5.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell6 != null) {
+            if (cell6.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell7 != null) {
+            if (cell7.Alive) {
+              AliveCount++;
+            }
+          }
+          if (cell8 != null) {
+            if (cell8.Alive) {
+              AliveCount++;
+            }
+          }
+
+
+
           // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-          if(AliveCount == 3){ ChangedCells.push(x + "-" + y); }
-          
+          if (AliveCount == 3) {
+            ChangedCells.push(x + "-" + y);
+          }
+
         }
       }
     }
-    
+
     // set new values
     ChangedCells.forEach(v => {
-  	Toggle(v);
-		});
-    
+      Toggle(v);
+    });
+
   }
 
 
@@ -191,7 +264,9 @@ class Grid {
 
 // Globals ==========================================================
 var GameBoard = new Grid(10, 10);
-
+var Start = false;
+var Incrementations = 0;
+var IncrementationSpeed = 1000;
 
 // Functions ========================================================
 function Toggle(id) {
@@ -223,19 +298,39 @@ function BuildGame() {
 
 function WidthScale(value) {
   document.getElementById("WidthLabel").innerHTML = value + "/50";
-  document.getElementById("Board").style.width = value*17+16 + "px";
+  document.getElementById("Board").style.width = value * 17 + 16 + "px";
   GameBoard.Width = value;
   GameBoard.Build();
 }
 function HeightScale(value) {
   document.getElementById("HeightLabel").innerHTML = value + "/50";
-  document.getElementById("Board").style.height = value*17+16 + "px";
+  document.getElementById("Board").style.height = value * 17 + 16 + "px";
   GameBoard.Height = value;
   GameBoard.Build();
 }
 
-function Increment(){
-	GameBoard.Increment();
+function ToggleStart(){
+	if(Start == true){
+  	document.getElementById("StartButton").value = "Start";
+  	Start = false;
+  }else{
+  	document.getElementById("StartButton").value = "Stop";
+  	Start = true;
+    Increment();
+  }
+}
+function Increment() {
+  GameBoard.Increment();
+  Incrementations ++;
+  document.getElementById("IncrementationLabel").innerHTML = "Incrementations : " + Incrementations;
+  
+  if(Start){
+    setTimeout(Increment, IncrementationSpeed); // callback
+  }
+  
+}
+function SetSpeed(value){
+	IncrementationSpeed = value;
 }
 
 
