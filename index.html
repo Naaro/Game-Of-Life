@@ -20,14 +20,14 @@
   <nav>
     <ul>
       <li><input id="StartButton" type="submit" value="Start" class="menuButton" style="width:100%" onclick="ToggleStart()"></li>
-      <li>Width  : <input type="range" value="10" min="10" max="50" oninput="WidthScale(this.value)" ><label id="WidthLabel">10/50</label></li>
-      <li>Height : <input type="range" value="10" min="10" max="50" oninput="HeightScale(this.value)"><label id="HeightLabel">10/50</label></li>
+      <li>Width  : <input type="range" value="20" min="10" max="50" oninput="WidthScale(this.value)" ><label id="WidthLabel">20/50</label></li>
+      <li>Height : <input type="range" value="20" min="10" max="50" oninput="HeightScale(this.value)"><label id="HeightLabel">20/50</label></li>
       <li>Delay : <input type="range" value="500" min="10" max="1000" oninput="SetSpeed(this.value)"></li>
       <li><label id="IncrementationLabel">Incrementations : 0</label></li>
     </ul>
     <br>
     <br>
-    <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game Of Life WiKi</a><br>
+    <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" style="position: absolute; bottom: 10%;">Conway's Game Of Life WiKi</a><br>
   </nav>
   
   <article>
@@ -263,7 +263,7 @@ class Grid {
 }
 
 // Globals ==========================================================
-var GameBoard = new Grid(10, 10);
+var GameBoard = new Grid(20, 20);
 var Start = false;
 var Incrementations = 0;
 var IncrementationSpeed = 1000;
