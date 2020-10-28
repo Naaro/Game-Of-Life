@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+}
+
+header{
+  
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5rem;
+  background-color: #777;
+  text-align: center;
+  color: white;
+}
+
+body {
+  background-image: url('Media/GrayGradient2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+.picturecontainer{
+	float: left;
+	margin: 0;
+	padding: 30px;
+	height: 460px;
+	width: 40%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.picture{
+	position: absolute;
+	margin: auto;
+	display: block;
+	z-index: 1;
+
+
+	max-width: 300px;
+	max-height: 400px; 
+	object-fit: contain;
+	border-radius: 10px;
+	
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	-o-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+	
+}
+
+.description{
+	float: right;
+	margin: 0;
+	padding: 30px;
+	height: 460px;
+	width: 60%;
+	background: tan;
+}
+
+.container{
+	margin: auto;
+	margin-bottom: 50px;
+	max-width: 1300px;
+	height: 460px;
+}
+
+
+
+.picture.fade {
+	animation-name: cf3FadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 20s;
+	animation-direction: normal;
+}
+@keyframes cf3FadeInOut {
+	0% {
+	  opacity:0;
+	}
+	10% {
+	opacity:1;
+	}
+	20% {
+	opacity:1;
+	}
+	30% {
+	opacity:0;
+	}
+	100% {
+	opacity:0;
+	}
+}
+
+.picture.fade.order5 {
+  animation-delay: 16s;
+  opacity:0;
+}
+.picture.fade.order4 {
+  animation-delay: 12s;
+  opacity:0;
+}
+.picture.fade.order3 {
+  animation-delay: 8s;
+  opacity:0;
+}
+.picture.fade.order2 {
+  animation-delay: 4s;
+  opacity:0;
+}
+.picture.fade.order1 {
+  animation-delay: 0s;
+  opacity:1;
+}
+
+
+
+
+
+
+.board{
+	margin: 0;
+	position: absolute;
+	left: 65%;
+	top: 60%;
+	height: 356px;
+	width: 356px;
+	
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	
+	padding: 5px;
+	border-style: solid;
+	border-color: green;
+	background: gray;
+}
+
+.cell{
+  margin: 1px;
+  float: left;
+  width: 15px;
+  height: 15px;
+  background-color: lightblue;
+}
+
+.cell:hover, .cell:active{
+  background: yellow;
+}

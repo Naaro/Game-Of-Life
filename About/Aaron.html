@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>About</title>
+	  <link rel="stylesheet" href="StyleSheet.css">
+	</head>
+	
+	<body>
+	
+		<!-- Header -->
+		<header>
+			<h1 style="margin-bottom:5px">About Me!</h1>
+			<img src="Media/Rose.jpg" alt="Profile Picture" class="picture" height="212" width="150" style="object-fit:fill; position:relative" >
+			(Aaron)
+		</header>
+	
+		<!-- Bio -->
+		<div class="container" style="text-align:center; margin-top:50px; padding: 50px; height:auto;">
+			Hey there! 
+			<p>My name is Aaron Lagerberg, I'm a computer software developer and overall tech enthusiast =D</p>
+			<p>I started writing code when I was about 12 years old and havn't slowed down since.  I'm really excited to share my passion and show you some of the things I've been working on recently.</p> 
+			<p>Thanks for taking a look!  </p>
+			<br>
+			
+			<p>Email : aaron.lagerberg@gmail.com <br>
+			Linkedin : <a href="https://www.linkedin.com/in/aaron-lagerberg/">Aaron Lagerberg</a> <br>
+			Resume : <a href="Resume - Aaron Lagerberg.pdf">Resume - Aaron Lagerberg.pdf</a>
+			</p>
+		</div>
+	
+		<!-- Infinity Mirror -->
+		<div class="container">
+			<div class="picturecontainer"> 
+				<video class="picture" autoplay muted loop>
+					<source src="Media/InfinityMirror.mp4" type="video/mp4">
+					Your browser does not support HTML video.
+				</video>
+			</div>
+			<div class="description"> 
+				<h2>Infinity Mirror</h2>
+				<p>This is an infinity mirror I made during the COVID times!</p>
+				<p>Using an arduino (ESP8266) Node MCU, a string of 73 5v LEDS, a mirror and some 40% transparancy acrylic I was able to create an infinity effect and the results are pretty cool!</p>
+				<p>Along with this project I made a phone app which can control the Infinity Mirror in different ways, such as changing the color (Red Green Orange Yellow Purple...) and setting the mode (Wave Solid Bar Pulse Off...)</p>
+				<br>
+				<p>Github : <a href="">Coming Soon!</a></p>
+			</div>
+		</div>
+		
+		<!-- Longboard -->
+		<div class="container">
+			<div class="description" style="float: left;"> 
+				<h2>Electric Longboard</h2>
+				<p>I have made 2 Longboards now and both are extremely fun to ride around on.</p>
+				<p>The first board I made used hub motors which are built into the wheels and work using magnets.  This was an easier way to start out and is probably how I would recommend starting to anyone new and interested.
+				This first board I made very loose and am able to make pretty sharp turns with.  It reminds me a lot of snowboarding, and because I used hub motors it's pretty quiet too.
+				</p>
+				<p>For my second board I got a little more hands on.  This board is belt driven and quite a bit more involed.  The battery for this board was hand built, the trucks and motors had to be put together in a way that allowed for clearance between the ground and the motors (which was a struggle in my case).
+				This board is much stiffer than my first one and louder, but it has way more torque and i've unofficially raced a few cars and won so it's working out fine.   
+				</p>
+				<p>This was an adult legos type project so no coding was required, however the Vesc (Variable ESC) that I used for my second board allows for reading and writing values to the ESC and I have plans to bevel out and attach LEDs to the bottom of the board for an underglow effect based on your current speed.  I'll release code for that when I get around to it.</p>
+			</div>
+			<div class="picturecontainer" style="float: right;"> 
+				<img src="Media/Longboard5.jpg" alt="Longboard" class="picture fade order5">
+				<img src="Media/Longboard4.jpg" alt="Longboard" class="picture fade order4">
+				<img src="Media/Longboard3.jpg" alt="Longboard" class="picture fade order3">
+				<img src="Media/Longboard2.jpg" alt="Longboard" class="picture fade order2">
+				<img src="Media/Longboard1.jpg" alt="Longboard" class="picture fade order1">
+			</div>
+		</div>
+
+		<!-- Smart Mirror -->
+		<div class="container">
+			<div class="picturecontainer"> 
+				<video class="picture" autoplay muted loop>
+					<source src="Media/SmartMirror.mp4" type="video/mp4" >
+					Your browser does not support HTML video.
+				</video>
+			</div>
+			<div class="description"> 
+				<h2>Smart Mirror</h2>
+				<p>So this is a smart mirror (I know, I've done a lot with mirrors). I originally made this because I had an old monitor that I didnt know what to do with and this is what it became!</p>
+				<p>Including the monitor I also used 1 Raspberry PI 3, an arduino, and a few slats of wood from under my sisters bed (she never noticed).  As you can see there's some bootup time which is the PI doing its initial load, during which the arduino is running a "loading" loop for the LEDs.
+					Once the PI completely boots up, it kicks off some Python code and sends a signal to the arduino telling it we're now booted and the arduino changes to a blue glow. The PI connects to Wifi and will pull down current date and weather information along with recent news articles and can really be configured to display any mannor of useful information.
+				</p>
+				<p>This is likely my favorite way to make use of old monitors ;)</p>
+				<p>Github : <a href="">Coming Soon!</a></p>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		<script>
+		
+
+			
+		</script>
+		
+	</body>
+
+</html>
