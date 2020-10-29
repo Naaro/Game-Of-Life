@@ -7,59 +7,57 @@
 <body>
 
 
+	<Header>
+	  <H2 style="text-align: center; font-weight: 400;">
+	  The Game Of Life
+	  </H2>
+	</Header>
 
 
-<Header>
-  <H2 style="text-align: center;">
-  The Game Of Life
-  </H2>
-</Header>
+	<section style="overflow: hidden;">
+		<!-- Nav -->
+		<nav>
+		<ul>
+		  <li><input id="StartButton" type="submit" value="Start" class="menuButton" style="width:100%" onclick="ToggleStart()"></li>
+		  <li>Width  : <input type="range" style="width:70%" value="20" min="10" max="50" oninput="WidthScale(this.value)" ><label id="WidthLabel">20/50</label></li>
+		  <li>Height : <input type="range" style="width:70%" value="20" min="10" max="50" oninput="HeightScale(this.value)"><label id="HeightLabel">20/50</label></li>
+		  <li>Delay :  <input type="range" style="width:70%" value="500" min="10" max="1000" oninput="SetSpeed(this.value)"><label id="Delaylabel">500ms</label></li>
+		  <li><label id="IncrementationLabel">Incrementations : 0</label></li>
+		</ul>
+		<br>
+		
+	  
+		<ul>
+		  <li style="text-align:center"> ===== Rules ===== </li>
+		  <li>Any live cell with <b>fewer than two</b> live neighbours dies, as if by underpopulation.</li>
+		  <li>Any live cell with <b>two or three live</b> neighbours lives on to the next generation.</li>
+		  <li>Any live cell with <b>more than three</b> live neighbours dies, as if by overpopulation.</li>
+		  <li>Any dead cell with <b>exactly three</b> live neighbours becomes a live cell, as if by reproduction.</li>
+		</ul>
+		
+		
+		<div style="text-align:center;">
+			<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" >Conway's Game Of Life WiKi</a><br>
+		</div>
+		
+		
+	  </nav>
+	  
+		<!-- Board -->
+		<article>
+		<div id="Board" class="board"></div>
+	  </article>
+	  
+	</section>
 
-
-<section>
-  <nav>
-    <ul>
-      <li><input id="StartButton" type="submit" value="Start" class="menuButton" style="width:100%" onclick="ToggleStart()"></li>
-      <li>Width  : <input type="range" style="width:70%" value="20" min="10" max="50" oninput="WidthScale(this.value)" ><label id="WidthLabel">20/50</label></li>
-      <li>Height : <input type="range" style="width:70%" value="20" min="10" max="50" oninput="HeightScale(this.value)"><label id="HeightLabel">20/50</label></li>
-      <li>Delay :  <input type="range" style="width:70%" value="500" min="10" max="1000" oninput="SetSpeed(this.value)"></li>
-      <li><label id="IncrementationLabel">Incrementations : 0</label></li>
-    </ul>
-    <br>
-    
-  
-	<ul>
-      <li style="text-align:center"> ===== Rules ===== </li>
-      <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-      <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-      <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-	  <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-    </ul>
-	
-	<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" style="position: absolute; bottom: 10%;">Conway's Game Of Life WiKi</a><br>
-	
-  </nav>
-  
-    
-  
-  <article>
-    <div id="Board" class="board"></div>
-  </article>
-  
-</section>
-
-
-
-
-<footer>
-  <p>Version 1.2</p>
-  <p>By : <a href="About/Aaron.html">Aaron</a></p>
-</footer>
-
-
+	<footer>
+	  <p style="margin:0; padding-top:15px;">Version 1.2</p>
+	  <p style="margin:0; padding:15px;">By : <a href="About/Aaron.html">Aaron</a></p>
+	</footer>
 
 
 <script>
+	
 	
 document.body.onload = BuildGame;
 
@@ -278,7 +276,7 @@ class Grid {
 var GameBoard = new Grid(20, 20);
 var Start = false;
 var Incrementations = 0;
-var IncrementationSpeed = 1000;
+var IncrementationSpeed = 500;
 
 // Functions ========================================================
 function Toggle(id) {
@@ -343,6 +341,7 @@ function Increment() {
 }
 function SetSpeed(value){
 	IncrementationSpeed = value;
+	document.getElementById("Delaylabel").innerHTML = IncrementationSpeed + "ms";
 }
 
 
@@ -351,6 +350,7 @@ function SetSpeed(value){
 
 
 </script>
+
 
 </body>
 </html>
